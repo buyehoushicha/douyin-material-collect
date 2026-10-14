@@ -1,0 +1,19 @@
+# Python 缓存
+__pycache__/
+*.pyc
+
+# 用户数据 —— 绝不提交
+# 登录态 / API Key / 配置（正常都在 ~/.workbuddy-ai/douyin-data/，
+# 这里再兜一层，防止误传）
+auth.json
+siliconflow.key
+config.json
+
+# 运行产物：素材库本体、批量条目、下载的视频
+创作素材库.xlsx
+_batch/
+小说素材视频/
+*.mp4
+*.m4a
+*.mp3
+*.part
