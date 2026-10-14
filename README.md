@@ -1,68 +1,81 @@
 # 抖音收藏夹 → 创作素材库
 
-> 把抖音收藏的视频，自动变成一双可以反复复用的**小说/剧本创作素材库**。
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Platform](https://img.shields.io/badge/Platform-WorkBuddy%20Skill-6f42c1.svg)](#-快速开始)
+[![Node](https://img.shields.io/badge/Node.js-%E2%89%A518-339933.svg)](https://nodejs.org)
+[![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB.svg)](https://python.org)
 
-刷到一个好故事，收藏进抖音收藏夹 → 本工具自动下载视频、把口播转成文字、提炼出故事结构（人设原型、情节模块、金句表达、冲突主题）→ 沉淀进一个长期积累的 Excel 素材库。
+> **刷到好故事，收藏进抖音 → 自动变成可复用的创作素材。**
+>
+> 一个 WorkBuddy Skill：下载收藏夹视频 → 语音转文字 → 提炼人设原型 / 情节模块 / 金句表达 / 冲突主题 → 沉淀进长期积累的 Excel 素材库。
 
 ---
 
-## 这是什么
+## 📖 目录
 
-一个 **WorkBuddy Agent Skill**。
+- [它能帮你做什么](#-它能帮你做什么)
+- [产出长什么样](#-产出长什么样)
+- [快速开始](#-快速开始)
+- [使用说明](#-使用说明)
+- [常见问题](#-常见问题)
+- [免责声明](#-免责声明)
+- [License](#-license)
 
-WorkBuddy 的 Agent 能读懂 `SKILL.md` 里的说明，自动完成「采集 → 提取 → 提炼 → 入库」全流程。你只需要在 WorkBuddy 里说一句「**更新素材库**」。
+---
 
-里面的脚本（Node + Python）也完全可以脱离 WorkBuddy 单独跑，见下方「手动使用」。
+## 💡 它能帮你做什么
 
-## 它解决什么问题
+大部分人刷抖音刷到好故事，只是「收藏了，再也没看过」。**这个工具把那堆吃灰的收藏变成可被检索、可复用的创作资产。**
 
-大部分人刷抖音刷到好故事，只是「收藏了，再也没看过」。  
-这个工具把那堆收藏变成**可被检索、可被复用的创作资产**：
+| 你的困惑 | 它给出的答案 |
+| --- | --- |
+| 看了很多故事，但写的时候想不起来 | 抽象成人设原型 / 情节模块，随时翻 |
+| 想借鉴但怕抄袭 | 素材**不记具体角色名和专有设定**，只留故事结构 |
+| 素材散落各处，越攒越乱 | 按 4 个维度自动分类，沉淀进一张 Excel |
 
-- 看完一个「废柴逆袭」的解说视频 → 得到一条抽象的「废柴逆袭」人设原型 + 对应的情节模块
-- 素材**不记具体角色名和专有设定** → 你可以安全地套用到自己的故事里
-- 素材按类型分表沉淀，越用越厚
+**你最终只得到一个文件：`创作素材库.xlsx`。** 视频和文案都是中间产物，用完即删。
 
-## 产出长什么样
+## 📦 产出长什么样
 
 `创作素材库.xlsx`，5 张表：
 
-| 表名   | 内容       | 字段示例                                    |
-| ---- | -------- | --------------------------------------- |
+| 表名 | 内容 | 字段示例 |
+| --- | --- | --- |
 | 人设原型 | 可复用的角色模板 | 原型名称 / 核心特征 / 内在矛盾 / 行为逻辑 / 弧光走向 / 适用题材 |
-| 情节模块 | 可套用的情节结构 | 模块名称 / 结构描述 / 情绪效果 / 可套用场景              |
-| 金句表达 | 值得借鉴的表达  | 金句 / 表达技巧 / 使用情境                        |
-| 冲突主题 | 故事冲突母题   | 冲突主题 / 描述 / 适用题材                        |
-| 来源索引 | 每条素材的出处  | 视频标题 / 类型 / 入库条目数 / 处理日期                |
+| 情节模块 | 可套用的情节结构 | 模块名称 / 结构描述 / 情绪效果 / 可套用场景 |
+| 金句表达 | 值得借鉴的表达 | 金句 / 表达技巧 / 使用情境 |
+| 冲突主题 | 故事冲突母题 | 冲突主题 / 描述 / 适用题材 |
+| 来源索引 | 每条素材的出处 | 视频标题 / 类型 / 入库条目数 / 处理日期 |
+
+> 例：看完一个「废柴逆袭」的解说视频 → 得到一条抽象的「废柴逆袭」人设原型 + 对应情节模块，可以直接套进你自己的故事。
 
 ---
 
-## 快速开始
+## 🚀 快速开始
 
-### 方式 A：作为 WorkBuddy Skill（推荐）
+### 作为 WorkBuddy Skill（推荐）
 
 ```bash
-# 1. 把仓库克隆到 WorkBuddy 的 skills 目录
-git clone https://github.com/<你的用户名>/douyin-material-collect.git \
+# 1. 克隆到 WorkBuddy 的 skills 目录
+git clone https://github.com/buyehoushicha/douyin-material-collect.git \
   ~/.workbuddy-ai/skills/douyin-material-collect
 ```
 
-然后在 WorkBuddy 里说一句「**更新素材库**」，AI 助手会：
+**2. 在 WorkBuddy 里说一句：「更新素材库」**
 
-1. 检查配置，缺 API Key 就主动问你要
-2. 自动采集、下载、转文字、提炼、入库
-3. 清理掉中间产物
+剩下的全自动 —— AI 会检查配置、缺 API Key 主动问你要，然后采集 → 下载 → 转写 → 提炼 → 入库 → 清理中间产物。
 
 首次使用详见 **[INSTALL.md](INSTALL.md)**。
 
-### 方式 B：手动跑脚本
+### 手动跑脚本
+
+<details>
+<summary>点开查看完整命令（不想用 WorkBuddy 的话）</summary>
 
 ```bash
 # 依赖
 npm install playwright-core
-# 首次装浏览器（若 WorkBuddy / 本地没有 Chromium）
-npx playwright install chromium
-
+npx playwright install chromium          # 首次装浏览器
 pip install requests openpyxl send2trash
 
 # 1) 扫码登录抖音
@@ -77,69 +90,102 @@ node scripts/collect.cjs
 # 4) 提取口播文案
 python scripts/extract_text.py
 
-# 5) 手动提炼素材并入库（这一步需要人/AI 来做）
+# 5) 提炼素材并入库（这一步需要人 / AI 来做）
 python 素材库/material_lib.py add 条目.json
 ```
 
-> `ffmpeg` 无需手动安装 —— 脚本会自动探测；实在找不到会**自动下载**静态版。
+</details>
 
----
+> 💡 `ffmpeg` 无需手动安装 —— 脚本会自动探测；实在找不到会**自动下载**静态版。
 
-## 前置条件
+### 前置条件
 
-| 依赖                         | 说明                                    |
-| -------------------------- | ------------------------------------- |
-| Node.js                    | 脚本自动探测                                |
-| playwright-core + Chromium | 用于浏览器自动化                              |
-| **ffmpeg**                 | 自动探测 + 自动下载，**无需手动装**                 |
-| Python 3.11+               | 需装 `requests` `openpyxl` `send2trash` |
-| **硅基流动 API Key**           | 用于语音转文字，需有余额（第一次登录有送，免费模型也要求账户有余额）    |
-| 抖音账号                       | 需扫码登录，并建一个名为「小说素材」的收藏夹                |
+| 依赖 | 说明 |
+| --- | --- |
+| Node.js | 脚本自动探测 |
+| playwright-core + Chromium | 用于浏览器自动化 |
+| **ffmpeg** | 自动探测 + 自动下载，**无需手动装** |
+| Python 3.11+ | 需装 `requests` `openpyxl` `send2trash` |
+| **硅基流动 API Key** | 用于语音转文字，需有余额（第一次登录有送，免费模型也要求账户有余额） |
+| 抖音账号 | 需扫码登录，并建一个名为「小说素材」的收藏夹 |
 
 所有路径**自动探测**（基于 `~` 和目录扫描），可用环境变量覆盖：  
 `DOUYIN_CHROME` / `DOUYIN_FFMPEG` / `DOUYIN_DATA_DIR` / `MATERIAL_LIB` / `SILICONFLOW_API_KEY`
 
 ---
 
-## 工作原理
+## 🔧 使用说明
 
-1. 带登录态打开 `douyin.com/user/self?showTab=favorite_collection`
-2. 拦截 `/aweme/v1/web/collects/list/` 找到目标收藏夹 ID  
-   必须用 `collects_id_str`，`collects_id` 是 int64，JS 解析会**丢精度**
-3. 点击收藏夹，拦截 `/aweme/v1/web/collects/video/list/` 拿视频列表（滚动翻页）
-4. 逐个下载（两种播放方式都要处理，见下）
-5. 提取音频 → 调硅基流动 ASR（`FunAudioLLM/SenseVoiceSmall`）→ 得到文案
-6. 提炼素材 → 写入素材库
+### 第一步：采集收藏夹
 
----
+在抖音把视频收藏进「**小说素材**」收藏夹，然后：
 
-## 项目结构
-
-```
-douyin-material-collect/
-├── SKILL.md              # WorkBuddy Agent 读的说明（含首次配置流程）
-├── INSTALL.md            # 面向用户的安装与使用文档
-├── scripts/
-│   ├── env.cjs           # 环境探测（Chromium / ffmpeg / 数据目录）
-│   ├── login.cjs         # 扫码登录
-│   ├── setup.cjs         # 首次配置向导（API Key + 素材库路径）
-│   ├── collect.cjs       # 采集收藏夹并下载视频
-│   └── extract_text.py   # 音频切分 + ASR 转文字
-└── 素材库/
-    └── material_lib.py   # 素材库管理（init / add / stat）
+```bash
+node scripts/collect.cjs
 ```
 
+| 参数 | 作用 |
+| --- | --- |
+| （无） | 采集全部未下载的项 |
+| `--dry-run` | 只列出收藏夹内容，不下载 |
+| `--limit N` | 最多下载 N 条 |
+| `--folder NAME` | 指定收藏夹名（默认「小说素材」） |
+| `--out DIR` | 指定输出目录 |
+
+### 第二步：提取文案
+
+```bash
+python scripts/extract_text.py
+```
+
+| 参数 | 作用 |
+| --- | --- |
+| `--only <视频ID>` | 只处理指定视频（增量提取，逗号分隔） |
+| `--keep-video` | 保留视频（默认提取成功后删除） |
+| `--keep-table` | 文案表输出到视频目录并保留（默认写临时目录） |
+| `--seg N` | 音频切片秒数，默认 30 |
+
+### 第三步：提炼入库
+
+这一步由 **AI 助手**完成：读文案 → 按四个维度提炼 → 写 `_batch/NN_xxx.json` → `material_lib.py add` 入库。
+
 ---
 
-## 注意事项
+## ❓ 常见问题
 
-- **限速**：每条视频之间随机等 4–12 秒。**不要改成 0** —— 高频访问会触发风控。
-- **登录态会过期**：报错提示未登录或列表为空时，重跑 `login.cjs` 重新扫码。
-- **收藏夹名要精确匹配**：脚本按名称查找，默认「小说素材」，多一个字都找不到。
+<details>
+<summary><b>报「未登录」或列表为空？</b></summary>
+
+登录态过期了。重跑 `node scripts/login.cjs` 重新扫码。
+</details>
+
+<details>
+<summary><b>报「未找到收藏夹」？</b></summary>
+
+收藏夹名字必须精确是「小说素材」。检查有没有多余空格。
+</details>
+
+<details>
+<summary><b>报 <code>402 balance insufficient</code>？</b></summary>
+
+硅基流动账户余额不足。充值即可（即使模型标价 Free 也有这个门槛）。
+</details>
+
+<details>
+<summary><b>抓不到视频流？</b></summary>
+
+短时间访问太频繁会触发风控。**等 10 分钟再试**。脚本已内置 4–12 秒限速，不要去掉。
+</details>
+
+<details>
+<summary><b>ffmpeg 自动下载失败？</b></summary>
+
+手动装一个：`winget install Gyan.FFmpeg`，或到 [ffmpeg.org](https://ffmpeg.org/download.html) 下载后设环境变量 `DOUYIN_FFMPEG`。
+</details>
 
 ---
 
-## 免责声明
+## ⚖️ 免责声明
 
 **本项目仅供个人学习、研究与技术交流使用，请在使用前仔细阅读以下内容：**
 
@@ -159,6 +205,6 @@ douyin-material-collect/
 
 ---
 
-## License
+## 📄 License
 
-[MIT](LICENSE)
+[MIT](LICENSE) © 2026 buyehoushicha
